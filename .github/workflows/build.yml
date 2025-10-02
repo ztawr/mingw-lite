@@ -33,7 +33,8 @@ jobs:
               'profile': json.dumps([
                 '64-ucrt',  '64_v2-ucrt',]),
             },
-            
+          ]  
+
 
           if '${{ github.ref_type }}' == 'tag':
             current_branch = '${{ github.ref_name }}'.split('-')[0].split('.')[0]
