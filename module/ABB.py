@@ -292,7 +292,7 @@ def _gcc(ver: BranchProfile, paths: ProjectPaths, config: argparse.Namespace):
     configure(build_dir, [
       '--prefix=',
       '--libexecdir=/lib',
-      f'--with-gcc-major-version-only',
+      # f'--with-gcc-major-version-only',
       f'--target={ver.target}',
       f'--host={ver.target}',
       f'--build={config.build}',
@@ -307,6 +307,7 @@ def _gcc(ver: BranchProfile, paths: ProjectPaths, config: argparse.Namespace):
       '--disable-libmpx',
       '--disable-multilib',
       '--enable-nls',
+      '--enable-mingw-wildcard',
       f'--enable-threads={ver.thread}',
       '--disable-win32-registry',
       # packages

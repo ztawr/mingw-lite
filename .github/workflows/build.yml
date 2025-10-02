@@ -12,26 +12,16 @@ jobs:
           python3 <<EOF >"$GITHUB_OUTPUT"
           import json
 
-          all_branch = ['16', '15', '14', '13']
+          all_branch = ['15', '14', '13']
 
           common_profile = [
-            '64-mcf', '64-win32', '64-ucrt', '64-msvcrt',
-            '32-mcf', '32-win32', '32-ucrt', '32-msvcrt',
+            '64-mcf', '64-ucrt', 
 
             # profile variants for micro architectures
-            '64_v2-mcf', '64_v2-win32', '64_v2-ucrt', '64_v2-msvcrt',
+            '64_v2-mcf', '64_v2-ucrt',
           ]
-          all_old_profile = [
-            '64-ucrt_ws2003', '64-msvcrt_ws2003',
-            '32-ucrt_winxp', '32-msvcrt_win2000',
-            '32_686-msvcrt_winnt40',
-            '32_486-msvcrt_winnt40',
-          ]
-          release_old_profile = [
-            '32-msvcrt_win2000',
-            '32_686-msvcrt_winnt40',
-            '32_486-msvcrt_winnt40',
-          ]
+          all_old_profile = []
+          release_old_profile = []
 
           sat_group = [
             {
@@ -41,38 +31,9 @@ jobs:
             {
               'name': '64-nt60',
               'profile': json.dumps([
-                '64-win32', '64-ucrt', '64-msvcrt',
-                '64_v2-win32', '64_v2-ucrt', '64_v2-msvcrt',
-              ]),
+                '64-ucrt',  '64_v2-ucrt',]),
             },
-            {
-              'name': '32-nt61',
-              'profile': json.dumps(['32-mcf']),
-            },
-            {
-              'name': '32-nt60',
-              'profile': json.dumps(['32-win32', '32-ucrt', '32-msvcrt']),
-            },
-            {
-              'name': '64-nt52',
-              'profile': json.dumps(['64-ucrt_ws2003', '64-msvcrt_ws2003']),
-            },
-            {
-              'name': '32-nt51',
-              'profile': json.dumps(['32-ucrt_winxp']),
-            },
-            {
-              'name': '32-nt50',
-              'profile': json.dumps(['32-msvcrt_win2000']),
-            },
-            {
-              'name': '32-nt40',
-              'profile': json.dumps([
-                '32_686-msvcrt_winnt40',
-                '32_486-msvcrt_winnt40',
-              ]),
-            },
-          ]
+            
 
           if '${{ github.ref_type }}' == 'tag':
             current_branch = '${{ github.ref_name }}'.split('-')[0].split('.')[0]
